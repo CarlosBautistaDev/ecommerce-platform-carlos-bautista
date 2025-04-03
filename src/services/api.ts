@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { Product } from '../types';
+import { Producto } from '../types';
 
 const API_URL = 'https://fakestoreapi.com/products'; 
 
 
-export const fetchProducts = async (category: string, page: number, limit: number): Promise<{ products: Product[]; total: number }> => {
+export const fetchProducts = async (category: string, page: number, limit: number): Promise<{ products: Producto[]; total: number }> => {
   try {
       const offset = (page - 1) * limit; 
       const url = category
           ? `${API_URL}/category/${category}`
           : `${API_URL}`;
-      const response = await axios.get<Product[]>(url);
+      const response = await axios.get<Producto[]>(url);
 
       const allProducts = response.data;
       const filteredProducts = allProducts.slice(offset, offset + limit); 
@@ -23,9 +23,9 @@ export const fetchProducts = async (category: string, page: number, limit: numbe
   }
 };
 
-export const fetchProductById = async (id: number): Promise<Product> => {
+export const fetchProductById = async (id: number): Promise<Producto> => {
     try {
-      const response = await axios.get<Product>(`${API_URL}/${id}`);
+      const response = await axios.get<Producto>(`${API_URL}/${id}`);
       if (!response.data || typeof response.data.id === 'undefined') {
         throw new Error('Producto inválido recibido de la API');
       }

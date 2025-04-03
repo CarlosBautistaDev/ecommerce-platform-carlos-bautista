@@ -1,12 +1,12 @@
 import React from 'react';
-import { Product } from '../types';
+import { Producto } from '../types';
 import useCart from '../hooks/useCart';
 import useFavorites from '../hooks/useFavorites';
 import Link from 'next/link';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 interface ProductCardProps {
-  product: Product;
+  product: Producto;
   onRemove?: () => void;
 }
 

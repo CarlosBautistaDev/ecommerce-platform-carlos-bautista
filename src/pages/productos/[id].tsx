@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProductById, fetchProducts } from '../../services/api';
-import { Product } from '../../types';
+import { Producto } from '../../types';
 import useCart from '@/hooks/useCart';
 
 const ProductDetail: React.FC = () => {
@@ -9,15 +9,18 @@ const ProductDetail: React.FC = () => {
   const { id } = router.query;
   const { addToCart } = useCart();
 
-  const { data: product, isLoading, error } = useQuery<Product>(
+  const { data: product, isLoading, error } = useQuery<Producto>(
     ['producto', id],
     () => fetchProductById(Number(id)),
     { enabled: !!id }
   );
 
-  const { data: relatedProducts } = useQuery<Product[]>(
+  const { data: relatedProducts } = useQuery<Producto[]>(
     ['productosRelacionados', product?.category],
-    () => fetchProducts(1, product?.category || ''),
+    async () => {
+      const response = await fetchProducts(product?.category || '', 1, 10); // Cambiar el orden de los argumentos
+      return response.products;
+    },
     { enabled: !!product?.category }
   );
 
@@ -28,7 +31,6 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div className="p-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
-      {/* Detalles del Producto */}
       <h1 className="text-3xl font-bold">{product?.title}</h1>
       <img
         src={product?.image}

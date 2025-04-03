@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import ProductGrid from '../../components/ProductGrid';
 import { fetchProducts } from '../../services/api';
-import { Product } from '../../types';
 
 const ProductosPage = () => {
   const [category, setCategory] = useState<string>('');

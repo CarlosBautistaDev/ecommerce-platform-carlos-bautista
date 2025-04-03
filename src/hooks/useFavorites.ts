@@ -3,7 +3,7 @@ import { Producto } from '../types';
 
 const useFavorites = () => {
   const [favorites, setFavorites] = useState<Producto[]>([]);
-  const [isInitialized, setIsInitialized] = useState(false); 
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favorites');
@@ -11,26 +11,26 @@ const useFavorites = () => {
       const parsedFavorites = JSON.parse(storedFavorites);
       setFavorites(parsedFavorites);
     }
-    setIsInitialized(true); 
+    setIsInitialized(true);
   }, []);
 
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem('favorites', JSON.stringify(favorites));
     }
-  }, [favorites, isInitialized]); 
+  }, [favorites, isInitialized]);
 
   const addFavorite = (product: Producto) => {
-    let parsedFavorites = [];
+    let parsedFavorites: Producto[] = []; // Declarar el tipo explícito
     const storedFavorites = localStorage.getItem('favorites');
     if (storedFavorites) {
-       parsedFavorites = JSON.parse(storedFavorites);
+      parsedFavorites = JSON.parse(storedFavorites) as Producto[]; // Asegurar el tipo al parsear
     }
 
     setFavorites(prev => {
       const exists = prev.some(item => item.id === product.id);
       if (!exists) {
-        const updatedFavorites = [...parsedFavorites, product]; 
+        const updatedFavorites = [...parsedFavorites, product];
         return updatedFavorites;
       }
       return prev;

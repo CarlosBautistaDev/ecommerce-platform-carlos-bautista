@@ -2,14 +2,14 @@ import Link from 'next/link';
 import { useState } from 'react';
 import CartDrawer from './CartDrawer';
 import useCart from '@/hooks/useCart';
-import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa'; 
+import { FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
 import { useAuth } from '@/context/AuthContext';
 
 const Header: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
-  const { cartItems } = useCart(); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cartItems } = useCart();
   const { user, logout } = useAuth();
 
   return (
@@ -27,7 +27,15 @@ const Header: React.FC = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden text-gray-800 dark:text-gray-200 text-2xl focus:outline-none"
           >
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
+            {isMenuOpen ? (
+              <span>
+                <FaTimes aria-hidden="true" />
+              </span>
+            ) : (
+              <span>
+                <FaBars aria-hidden="true" />
+              </span>
+            )}
           </button>
 
           <nav
