@@ -1,0 +1,38 @@
+/* 
+  Este archivo contiene los estilos globales para la aplicación de e-commerce.
+  Aquí se configura Tailwind CSS y se definen estilos que se aplican a toda la aplicación.
+*/
+
+/* Importación de Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados */
+body {
+  @apply bg-white text-gray-900; /* Fondo blanco y texto gris oscuro */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold; /* Estilo de fuente en negrita para encabezados */
+}
+
+a {
+  @apply text-blue-600 hover:text-blue-800; /* Color de enlaces y efecto hover */
+}
+
+.container {
+  @apply mx-auto px-4; /* Margen automático y padding horizontal */
+}
+
+/* Estilos para el carrito */
+.cart-drawer {
+  @apply fixed right-0 top-0 w-80 h-full bg-white shadow-lg; /* Estilo del cajón del carrito */
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+  .container {
+    @apply px-2; /* Padding reducido en pantallas pequeñas */
+  }
+}

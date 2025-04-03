@@ -1,0 +1,7 @@
+Este archivo debe contener el ícono de la aplicación en formato `.ico`. Como no puedo generar un archivo de imagen directamente, te sugiero que utilices un generador de favicon en línea para crear un archivo `favicon.ico` o que descargues uno que te guste y lo coloques en la ruta especificada.
+
+Si necesitas un favicon específico, puedes buscar uno en sitios como [favicon.io](https://favicon.io/) o [flaticon.com](https://www.flaticon.com/). Una vez que tengas el archivo, simplemente colócalo en la carpeta `public` de tu proyecto.
+
+Si deseas que el archivo esté vacío, aquí tienes un comentario indicando que el archivo está intencionadamente vacío:
+
+<!-- Este archivo está intencionadamente vacío. Por favor, añade un favicon en formato .ico aquí. -->
